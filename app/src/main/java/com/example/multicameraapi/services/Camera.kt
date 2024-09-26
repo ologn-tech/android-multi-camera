@@ -464,8 +464,10 @@ class Camera constructor(private val cameraManager: CameraManager) {
             }
         }
 
-        this.physicalCameraIds = manager.cameraIdList.toSet()
-        return "0" // default Camera. Logical Camera is not supported
+        val cameraId = "2"
+        val characteristics = manager.getCameraCharacteristics(cameraId)
+        this.physicalCameraIds = characteristics.physicalCameraIds
+        return cameraId
     }
 
     private fun calculateZoomSize(manager: CameraManager) {
